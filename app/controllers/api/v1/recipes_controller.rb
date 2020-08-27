@@ -1,6 +1,12 @@
 class Api::V1::RecipesController < ApplicationController
   def index
-    recipes = Recipe.all
+    tag_id = params[:tag_id].to_i
+    recipes = []
+    if tag_id == 0
+      recipes = Recipe.all
+    else
+      recipes = Recipe.where(id: RecipeTag.where(tag_id: tag_id).pluck(:recipe_id))
+    end
     render :json => { "recipes": recipes }
   end
 

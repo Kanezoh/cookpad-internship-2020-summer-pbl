@@ -1,6 +1,6 @@
 <template>
-<div>
-  <h3>今日のおすすめレシピ</h3>
+  <div>
+    <h3 v-if="tag"><{{ tag.name }}>タグのレシピ</h3>
     <v-card v-for="recipe in recipes" :key="recipe.id" class="recipe-card mb-4" height="250px">
       <router-link :to="`/recipes/${recipe.id}`" style="text-decoration: none; color: black;">
         <v-row class="ma-0">
@@ -23,16 +23,25 @@ export default {
   name: 'RecipeIndex',
   data: function() {
     return {
-      recipes: []
+      recipes: [],
+      tag: ''
     }
   },
   created: function() {
     this.fetchRecipes()
+    if (this.$route.query.tag_id) {
+      this.fetchTag()
+    }
   },
   methods: {
     fetchRecipes: function() {
-      axios.get('api/v1/recipes').then(res => {
+      axios.get('api/v1/recipes', {params: {tag_id: this.$route.query.tag_id}}).then(res => {
         this.recipes = res["data"]["recipes"]
+      })
+    },
+    fetchTag: function() {
+      axios.get('api/v1/tag', {params: {tag_id: this.$route.query.tag_id}}).then(res => {
+        this.tag = res["data"]["tag"]
       })
     }
   }

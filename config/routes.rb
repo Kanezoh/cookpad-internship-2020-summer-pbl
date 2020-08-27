@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'recipes', to: 'recipes#index'
       get 'recipe', to: 'recipes#show'
+      get 'tags', to: 'tags#index'
+      get 'tag', to: 'tags#show'
     end
   end
   root to: 'home#index'
