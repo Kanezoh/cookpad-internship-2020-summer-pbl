@@ -28,7 +28,7 @@ class Api::V1::RecipesController < ApplicationController
         recipe.ingredients.pluck(:name).map{|name| to_hiragana(name) }.any?{|name| name.include?(search_word)}
       end
     end
-    filtered_recipes.flatten
+    filtered_recipes.flatten!
     render :json => {"recipes": filtered_recipes}
   end
 

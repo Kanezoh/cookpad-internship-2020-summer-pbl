@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--<h3 v-if="tag">検索結果</h3>
     <v-card v-for="recipe in recipes" :key="recipe.id" class="recipe-card mb-4" height="250px">
       <router-link :to="`/recipes/${recipe.id}`" style="text-decoration: none; color: black;">
         <v-row class="ma-0">
@@ -13,7 +12,7 @@
           </v-col>
         </v-row>
       </router-link>
-    </v-card> -->
+    </v-card>
   </div>
 </template>
 
@@ -21,16 +20,26 @@
 import axios from 'axios'
 export default {
   name: 'SearchPage',
-  created: function() {
-    this.searchRecipes()
+  data: function() {
+    return {
+      recipes: [],
+    }
+  },
+  created: async function() {
+    await this.searchRecipes()
+    console.log(this.recipes)
   },
   methods: {
-    searchRecipes: function() {
+    searchRecipes: async function() {
       const searchWord = this.$route.query.search_word
-      axios.get('/api/v1/search', {params:{search_word: searchWord}}).then(res => {
-        console.log(res)
-      })
+      const res = await axios.get('/api/v1/search', {params:{search_word: searchWord}})
+      this.recipes = res["data"]["recipes"]
     }
-  }
+  },
+  watch: {
+    '$route'(to, from) {
+      this.searchRecipes()
+    }
+  },
 }
 </script>

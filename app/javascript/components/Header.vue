@@ -2,11 +2,11 @@
 <header class="pt-2 pb-2">
   <v-container>
     <div>
-      <router-link to="/">
+      <router-link to="/" style="color: black; text-decoration: none;">
         <img src="/cookbox.png" height="63px" style="float:left;" class="mr-5" />
-        <span class="sub-title ml-1" style="color:black; text-decoration:none;">とどく、あける、料理する</span>
+        <span class="sub-title ml-1">とどく、あける、料理する</span>
+        <h1>CookBox</h1>
       </router-link>
-      <h1>CookBox</h1>
     </div>
   </v-container>
 </header>

@@ -1,14 +1,14 @@
 <template>
   <v-card>
     <v-row class="ma-0 pa-2">
-      <v-col cols="4" class="pa-0">
+      <v-col cols="12" sm="4" class="pa-0">
         <v-card-title>{{ recipeInfo.title }}</v-card-title>
         <v-img :src="recipeInfo.img_path" class="recipeInfo-img ml-2" height="250" />
       </v-col>
       <v-spacer></v-spacer>
-      <v-col cols="7">
+      <v-col cols="12" sm="7">
         <v-card-text>{{ recipeInfo.description }}</v-card-text>
-        <table style="width: 70%; border-collapse: collapse;" border="1">
+        <table style="width: 70%; border-collapse: collapse; margin: 0 auto;" border="1">
           <tr>
             <th></th>
             <th style="text-align:center;">材料</th>
@@ -20,14 +20,14 @@
             <td style="text-align:right; padding-right: 10px;">{{ ingredient.quantity }}</td>
           </tr>
         </table>
-        <div style="margin-left: 320px; margin-top: 30px;">
+        <div style="float: right; margin-top: 30px;">
           <v-btn color="success" :href="orderLink" target="_blank" rel="noopener">食材を注文する</v-btn>
           <br>
           <span style="color: grey; font-size: 12px;">　　※外部サイトに飛びます</span>
         </div>
       </v-col>
     </v-row>
-    <div class="pl-4">
+    <div class="pl-4 pb-10">
       <h3>レシピ</h3>
       <v-card-text style="white-space: pre-wrap; font-size: 20px;">{{recipeInfo.howto}}</v-card-text>
     </div>
