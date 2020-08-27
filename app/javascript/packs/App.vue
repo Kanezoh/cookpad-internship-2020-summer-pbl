@@ -2,7 +2,7 @@
   <v-app id="app">
     <Header />
     <v-container>
-      <Tag v-if="!this.$route.fullPath.match(/\/recipes\/\d/)"/>
+      <Tag v-if="!(this.$route.fullPath.match(/\/recipes\/\d/) || (this.$route.fullPath=='/history'))"/>
       <router-view />
     </v-container>
     <Footer />

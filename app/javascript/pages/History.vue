@@ -1,0 +1,9 @@
+<template>
+  <p>history</p>
+</template>
+
+<script>
+export default {
+  name: 'History',
+}
+</script>

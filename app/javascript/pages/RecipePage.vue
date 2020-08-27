@@ -21,7 +21,7 @@
           </tr>
         </table>
         <div style="float: right; margin-top: 30px;">
-          <v-btn color="success" :href="orderLink" target="_blank" rel="noopener">食材を注文する</v-btn>
+          <v-btn color="success" :href="orderLink" target="_blank" rel="noopener" @click="setHistory(recipeInfo)">食材を注文する</v-btn>
           <br>
           <span style="color: grey; font-size: 12px;">　　※外部サイトに飛びます</span>
         </div>
@@ -47,6 +47,7 @@ export default {
   created: async function() {
     await this.fetchRecipeInfo()
     this.setDefaultOrderLink()
+    console.log(JSON.parse(localStorage.getItem('recipeInfos')))
   },
   methods: {
     fetchRecipeInfo: async function() {
@@ -71,6 +72,16 @@ export default {
       let ingredients = this.recipeInfo.ingredients.filter(ingredient=> ingredient.selected == true)
       let ingredient_ids = ingredients.map(ingredient => ingredient.amazon_id).join('|')
       this.orderLink = `https://www.amazon.co.jp/s?hidden-keywords=${ingredient_ids}`
+    },
+    setHistory: function(recipeInfo) {
+      let recipeInfos = JSON.parse(localStorage.getItem('recipeInfos'))
+      if (recipeInfos === null) {
+        localStorage.setItem('recipeInfos', JSON.stringify([recipeInfo]))
+      } else {
+        let newRecipeInfo = recipeInfo
+        recipeInfos.push(newRecipeInfo)
+        localStorage.setItem('recipeInfos', JSON.stringify(recipeInfos))
+      }
     }
   }
 }
