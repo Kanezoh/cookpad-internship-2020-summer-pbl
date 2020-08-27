@@ -15,8 +15,8 @@
     <p>カテゴリから探す</p>
     <v-row style="background-color: #EAE4D8;" class="mr-0 ml-0 mb-10">
       <v-col v-for="category in categories" :key="category.id" cols="3">
-        <router-link :to="`/recipes?tag_id=${category.id}`">
-          ・<span style="text-decoration: underline; color: #C69856; font-weight: bold;">{{ category.name}}({{ category.count}})</span>
+        <router-link :to="`/recipes?tag_id=${category.id}`" style="text-decoration:none;">
+          <span style="color:black;">・</span><span style="text-decoration: underline; color: #C69856; font-weight: bold;">{{ category.name}}({{ category.count}})</span>
         </router-link>
       </v-col>
     </v-row>

@@ -15,13 +15,13 @@
             <th style="text-align:center; width: 30%;">分量</th>
           </tr>
           <tr v-for="ingredient in recipeInfo.ingredients">
-            <td style="width: 10%;"><v-checkbox style="margin: 0 auto; padding-left: 10px;" @change="selectIngredient(ingredient.id)" /></td>
+            <td style="width: 10%;"><v-checkbox style="margin: 0 auto; padding-left: 10px;" @change="selectIngredient(ingredient.id)" input-value="true" /></td>
             <td style="text-align:center;">{{ ingredient.name }}</td>
             <td style="text-align:right; padding-right: 10px;">{{ ingredient.quantity }}</td>
           </tr>
         </table>
         <div style="margin-left: 320px; margin-top: 30px;">
-          <v-btn color="success" :href="orderLink" target="_blank" rel="noopener" :disabled="orderBtnDisabled">食材を注文する</v-btn>
+          <v-btn color="success" :href="orderLink" target="_blank" rel="noopener">食材を注文する</v-btn>
           <br>
           <span style="color: grey; font-size: 12px;">　　※外部サイトに飛びます</span>
         </div>
@@ -44,35 +44,28 @@ export default {
       orderLink: '',
     }
   },
-  created: function() {
-    this.fetchRecipeInfo()
-  },
-  computed: {
-    orderBtnDisabled: function(){
-      if(this.recipeInfo.ingredients === undefined) {
-        return false
-      }
-      if(this.recipeInfo.ingredients.find(ingredient => ingredient.selected == true)) {
-        return true
-      } else {
-        return false
-      }
-    }
+  created: async function() {
+    await this.fetchRecipeInfo()
+    this.setDefaultOrderLink()
   },
   methods: {
-    fetchRecipeInfo: function() {
+    fetchRecipeInfo: async function() {
       const recipeId = this.$route.params.id
-      axios.get("/api/v1/recipe",{ params: { id: recipeId } } ).then(res => {
-        this.recipeInfo = res["data"]
-        this.recipeInfo.ingredients.map(ingredient => {
-          ingredient["selected"] = false
-        })
+      const res = await axios.get("/api/v1/recipe",{ params: { id: recipeId } } )
+      this.recipeInfo = res["data"]
+      this.recipeInfo.ingredients.map(ingredient => {
+        ingredient["selected"] = true
       })
     },
     selectIngredient: function(ingredientId) {
       const ingredient = this.recipeInfo.ingredients.find(ingredient => ingredient.id === ingredientId)
       ingredient.selected = !ingredient.selected
       this.changeOrderLink()
+    },
+    setDefaultOrderLink: function() {
+      let ingredients = this.recipeInfo.ingredients
+      let ingredient_ids = ingredients.map(ingredient => ingredient.amazon_id).join('|')
+      this.orderLink = `https://www.amazon.co.jp/s?hidden-keywords=${ingredient_ids}`
     },
     changeOrderLink: function() {
       let ingredients = this.recipeInfo.ingredients.filter(ingredient=> ingredient.selected == true)
