@@ -25,7 +25,7 @@ class Api::V1::RecipesController < ApplicationController
     search_words.each do |search_word|
       filtered_recipes << Recipe.all.select do |recipe|
         to_hiragana(recipe.title).include?(search_word) ||
-        recipe.ingredients.pluck(:name).map{|name| to_hiragana(name) }.include?(search_word)
+        recipe.ingredients.pluck(:name).map{|name| to_hiragana(name) }.any?{|name| name.include?(search_word)}
       end
     end
     filtered_recipes.flatten
