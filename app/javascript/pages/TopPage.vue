@@ -1,19 +1,18 @@
 <template>
 <div>
-  <p style="text-align: right; text-decoration: underline;">お近くの受け取り場所</p>
-  <Search />
+  <Tag />
   <!--<RecipeIndex /> -->
 </div>
 </template>
 
 <script>
 //import RecipeIndex from '../components/RecipeIndex.vue'
-import Search from '../components/Search.vue'
+import Tag from '../components/Tag.vue'
 export default {
   name: 'TopPage',
   components: {
     //RecipeIndex,
-    Search,
+    Tag,
   },
 }
 </script>
