@@ -1,7 +1,6 @@
 <template>
 <div>
   <h3>今日のおすすめレシピ</h3>
-  <div v-for="n in 5" :key="n">
     <v-card v-for="recipe in recipes" :key="recipe.id" class="recipe-card mb-4" height="250px">
       <router-link :to="`/recipes/${recipe.id}`" style="text-decoration: none; color: black;">
         <v-row class="ma-0">
@@ -16,7 +15,6 @@
       </router-link>
     </v-card>
   </div>
-</div>
 </template>
 
 <script>

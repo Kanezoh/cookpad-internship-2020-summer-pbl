@@ -29,3 +29,55 @@ Ingredient.create(name: 'イカそうめん', quantity: '1/2杯', amazon_id: 'B0
 Ingredient.create(name: '酢', quantity: '大さじ1', amazon_id: 'B00Z5ZPTK6',recipe_id: 2)
 Ingredient.create(name: '塩', quantity: '少々', amazon_id: 'B019FAHI6E',recipe_id: 2)
 Ingredient.create(name: 'ご飯', quantity: '2膳', amazon_id: 'B008AQZXPI',recipe_id: 2)
+
+
+Recipe.create(title: '至高の肉じゃが', 
+  description: 'やばい肉じゃがです',
+  howto: "1. 材料を炒めてから煮ます\n2. 盛りつけます",
+  img_path: '/recipes/image-3.jpg')
+
+Ingredient.create(name: '牛肉', quantity: '400g', amazon_id: 'B01M2D4BMI', recipe_id: 3)
+Ingredient.create(name: 'じゃがいも', quantity: '6個', amazon_id: 'B07L373XV8',recipe_id: 3)
+Ingredient.create(name: '人参', quantity: '1個', amazon_id: 'B07V4LV4Q6',recipe_id: 3)
+Ingredient.create(name: '玉ねぎ', quantity: '1個', amazon_id: 'B00Z5ZPTK6',recipe_id: 3)
+
+Recipe.create(title: '旨辛マーボー', 
+              description: 'うまいし辛いです',
+              howto: "1. 材料を炒めます\n2. 辛くして盛りつけます",
+              img_path: '/recipes/image-4.jpg')
+
+Ingredient.create(name: '長ねぎ', quantity: '1本', amazon_id: 'B01M2D4BMI', recipe_id: 4)
+Ingredient.create(name: '唐辛子', quantity: '1本', amazon_id: 'B07L373XV8',recipe_id: 4)
+Ingredient.create(name: 'とうふ', quantity: '1丁', amazon_id: 'B07V4LV4Q6',recipe_id: 4)
+Ingredient.create(name: 'コチュジャン', quantity: '小さじ2', amazon_id: 'B00Z5ZPTK6',recipe_id: 4)
+
+Recipe.create(title: '黄金チャーハン', 
+  description: 'やべえチャーハンです',
+  howto: "1. 材料を炒めます\n2. 盛りつけます",
+  img_path: '/recipes/image-5.jpg')
+
+Ingredient.create(name: 'ご飯', quantity: '450g', amazon_id: 'B01M2D4BMI', recipe_id: 5)
+Ingredient.create(name: '卵', quantity: '1個', amazon_id: 'B07L373XV8',recipe_id: 5)
+Ingredient.create(name: 'ハム', quantity: '2枚', amazon_id: 'B07V4LV4Q6',recipe_id: 5)
+Ingredient.create(name: '長ねぎ', quantity: '1/4本', amazon_id: 'B00Z5ZPTK6',recipe_id: 5)
+
+
+Recipe.create(title: '刺身のカルパッチョ', 
+  description: '最高のカルパッチョです',
+  howto: "1. 刺身を並べます\n2. オリーブオイルをかけます、完成！",
+  img_path: '/recipes/image-6.jpg')
+
+Ingredient.create(name: 'マグロ', quantity: '適量', amazon_id: 'B01M2D4BMI', recipe_id: 6)
+Ingredient.create(name: 'サーモン', quantity: '適量', amazon_id: 'B07L373XV8',recipe_id: 6)
+Ingredient.create(name: 'ホタテ', quantity: '適量', amazon_id: 'B07V4LV4Q6',recipe_id: 6)
+Ingredient.create(name: 'オリーブオイル', quantity: '適量', amazon_id: 'B00Z5ZPTK6',recipe_id: 6)
+
+Recipe.create(title: 'うまいピザ', 
+  description: 'めちゃうまいピザです',
+  howto: "1. 生地の上に具材を並べます\n2. 焼きます、完成！",
+  img_path: '/recipes/image-7.jpg')
+
+Ingredient.create(name: '強力粉', quantity: '適量', amazon_id: 'B01M2D4BMI', recipe_id: 7)
+Ingredient.create(name: '薄力粉', quantity: '適量', amazon_id: 'B07L373XV8',recipe_id: 7)
+Ingredient.create(name: 'ベーコン', quantity: '適量', amazon_id: 'B07V4LV4Q6',recipe_id: 7)
+Ingredient.create(name: 'トマトソース', quantity: '適量', amazon_id: 'B00Z5ZPTK6',recipe_id: 7)
