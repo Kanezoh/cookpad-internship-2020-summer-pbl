@@ -1,4 +1,6 @@
 class Api::V1::RecipesController < ApplicationController
+  require 'nkf'
+
   def index
     tag_id = params[:tag_id].to_i
     recipes = []
@@ -13,5 +15,27 @@ class Api::V1::RecipesController < ApplicationController
   def show
     recipe = Recipe.find(params[:id])
     render json: recipe.to_json(:include => [:ingredients])
+  end
+
+  def search
+    search_word_str = params[:search_word]
+    search_words = search_word_str.split(' ').split('　').flatten
+    search_words.map!{|word| to_hiragana(word)}
+    filtered_recipes = []
+    search_words.each do |search_word|
+      filtered_recipes << Recipe.all.select do |recipe|
+        to_hiragana(recipe.title).include?(search_word) ||
+        recipe.ingredients.pluck(:name).map{|name| to_hiragana(name) }.include?(search_word)
+      end
+    end
+    filtered_recipes.flatten
+    render :json => {"recipes": filtered_recipes}
+  end
+
+  private
+
+  def to_hiragana(str)
+    str = NKF.nkf('-w --hiragana', str)
+    str
   end
 end

@@ -5,10 +5,10 @@
       <v-row>
         <v-spacer></v-spacer>
         <v-col cols="5">
-          <v-text-field placeholder="料理名・食材名" outlined />
+          <v-text-field placeholder="料理名・食材名" outlined v-model="searchWord" />
         </v-col>
         <v-col cols="2">
-          <v-btn height="56" class="search-btn" color="#EAE4D8">検索</v-btn>
+          <v-btn height="56" class="search-btn" color="#EAE4D8" :to="`/search?search_word=${searchWord}`">検索</v-btn>
         </v-col>
       </v-row>
     </v-form>
@@ -29,7 +29,8 @@ export default {
   name: 'Tag',
   data: function() {
     return {
-      categories: []
+      categories: [],
+      searchWord: '',
     }
   },
   created: function() {

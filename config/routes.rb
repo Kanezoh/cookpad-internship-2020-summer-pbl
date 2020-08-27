@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get 'recipe', to: 'recipes#show'
       get 'tags', to: 'tags#index'
       get 'tag', to: 'tags#show'
+      get 'search', to: 'recipes#search'
     end
   end
   root to: 'home#index'
