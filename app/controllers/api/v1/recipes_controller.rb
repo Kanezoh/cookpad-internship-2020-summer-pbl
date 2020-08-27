@@ -34,7 +34,6 @@ class Api::V1::RecipesController < ApplicationController
     if search_words.size > 1
       search_results = filtered_recipes.subtract_once(filtered_recipes.uniq)
     end
-    p search_results
     render :json => {"recipes": search_results}
   end
 
