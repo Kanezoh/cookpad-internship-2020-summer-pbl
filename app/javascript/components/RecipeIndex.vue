@@ -10,7 +10,7 @@
           </v-col>
           <v-col cols="9">
             <v-card-title style="text-decoration: underline;">{{ recipe.title }}</v-card-title>
-            <v-card-text>{{ recipe.description.repeat(10) }}</v-card-text>
+            <v-card-text>{{ recipe.description }}</v-card-text>
           </v-col>
         </v-row>
       </router-link>

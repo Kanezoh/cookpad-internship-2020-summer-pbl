@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'recipes', to: 'recipes#index'
-      get 'recipes/:id', to: 'recipes#show'
+      get 'recipe', to: 'recipes#show'
     end
   end
   root to: 'home#index'
