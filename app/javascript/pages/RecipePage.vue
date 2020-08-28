@@ -2,13 +2,13 @@
   <v-card>
     <v-row class="ma-0 pa-2">
       <v-col cols="12" sm="4" class="pa-0">
-        <v-card-title>{{ recipeInfo.title }}</v-card-title>
+        <v-card-title style="font-weight:bold;">{{ recipeInfo.title }}</v-card-title>
         <v-img :src="recipeInfo.img_path" class="recipeInfo-img ml-2" height="250" />
       </v-col>
       <v-spacer></v-spacer>
       <v-col cols="12" sm="7">
-        <v-card-text>{{ recipeInfo.description }}</v-card-text>
-        <table style="width: 70%; border-collapse: collapse; margin: 0 auto;" border="1">
+        <v-card-text style="white-space: pre-wrap; font-size: 18px;">{{ recipeInfo.description }}</v-card-text>
+        <table style="width: 70%; border-collapse: collapse; margin: 0 auto;" border="1" class="mt-4">
           <tr>
             <th></th>
             <th style="text-align:center;">材料</th>
@@ -47,6 +47,7 @@ export default {
     }
   },
   created: async function() {
+    this.moveToTop()
     await this.fetchRecipeInfo()
     this.setDefaultOrderLink()
     console.log(JSON.parse(localStorage.getItem('recipeInfos')))
@@ -84,6 +85,17 @@ export default {
         recipeInfos.push(newRecipeInfo)
         localStorage.setItem('recipeInfos', JSON.stringify(recipeInfos))
       }
+    },
+    moveToTop: function() {
+      const duration = 1
+      const interval = 25
+      const step = -window.scrollY / Math.ceil(duration / interval)
+      const timer = setInterval(() => {
+          window.scrollBy(0, step)
+          if(window.scrollY <= 0) {
+              clearInterval(timer)
+          }
+      }, interval);
     }
   }
 }
