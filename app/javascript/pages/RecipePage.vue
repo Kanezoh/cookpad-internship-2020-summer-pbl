@@ -30,6 +30,8 @@
     <div class="pl-4 pb-10">
       <h3>レシピ</h3>
       <v-card-text style="white-space: pre-wrap; font-size: 20px;">{{recipeInfo.howto}}</v-card-text>
+      <img src="/step-1.jpg" class="recipeInfo-img" style="height: 250px; max-width: 320px;" />
+      <img src="/step-2.jpg" class="recipeInfo-img" style="height: 250px; max-width: 320px;" />
     </div>
   </v-card>
 </template>
